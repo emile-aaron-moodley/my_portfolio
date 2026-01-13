@@ -7,8 +7,12 @@ import {
   Server, Database, Lock, Layout, BarChart3, MessageSquare,
   Package, AlertCircle, Search, Filter, MoreVertical, Bell, Settings,
   Hash, Video, Mic, Smile, Paperclip, CreditCard, PieChart, ArrowUpRight, ArrowDownRight,
-  Activity, FileText, Clock, User, Shield, Truck, ClipboardList
+  Activity, FileText, Clock, User, Shield, Truck, ClipboardList, Flag, Coffee
 } from 'lucide-react';
+
+// --- IMPORT YOUR IMAGE HERE ---
+// This tells React to look for the file inside the src folder
+import profilePic from './FB_IMG_1762275510940.jpg'; 
 
 /**
  * ANIMATION VARIANTS
@@ -996,6 +1000,7 @@ export default function App() {
             >
               I build digital experiences
             </motion.span>
+             {' '}that matter.
           </h1>
 
           <motion.p 
@@ -1022,26 +1027,88 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* STATS SECTION */}
-      <section id="about" className="py-24 border-y border-white/5 bg-black/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-          {[
-            { label: 'Years Experience', value: '2+' },
-            { label: 'Projects Completed', value: '5' },
-            { label: 'Coffee Consumed', value: '∞' },
-          ].map((stat, i) => (
+      {/* ABOUT SECTION */}
+      <section id="about" className="py-32 border-y border-white/5 bg-black/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Image Column */}
             <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className="pt-8 md:pt-0"
+              className="relative group"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
-              <div className="text-sm font-medium text-gray-500 uppercase tracking-wider">{stat.label}</div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] bg-zinc-900">
+                {/* Make sure your image is in the public folder */}
+                <img 
+                  src="/FB_IMG_1762275510940.jpg" 
+                  alt="Emile Moodley" 
+                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                {/* Overlay Badge */}
+                <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 shadow-xl">
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Current Focus</div>
+                  <div className="font-bold text-white flex items-center gap-2">
+                    <Coffee size={16} className="text-yellow-500"/> Java Spring Boot
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          ))}
+
+            {/* Text Column */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">More Than Just Code</h2>
+                <p className="text-gray-400 text-lg leading-relaxed">
+                  I'm a developer who bridges the gap between robust engineering and intuitive design. My technical philosophy is built on the reliability of <strong className="text-white">Java</strong> for mission-critical backends and the dynamic versatility of <strong className="text-white">JavaScript</strong> for creating fluid, engaging frontends.
+                </p>
+                <p className="text-gray-400 text-lg leading-relaxed mt-4">
+                  When I'm not optimizing algorithms or debugging API endpoints, you can find me watching <strong className="text-white">F1</strong> races (hoping for a great strategy call) or exploring new tech trends. I approach coding with the same precision as an F1 engineer—focusing on speed, efficiency, and pushing the limits of performance.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 bg-zinc-900/50 rounded-xl border border-white/5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-orange-500/10 rounded-lg text-orange-500"><Coffee size={20}/></div>
+                    <span className="font-bold text-white">Java Expert</span>
+                  </div>
+                  <p className="text-sm text-gray-500">Building scalable, secure enterprise-grade backends.</p>
+                </div>
+                <div className="p-4 bg-zinc-900/50 rounded-xl border border-white/5">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-blue-500/10 rounded-lg text-blue-500"><Code2 size={20}/></div>
+                    <span className="font-bold text-white">JS/React Pro</span>
+                  </div>
+                  <p className="text-sm text-gray-500">Crafting interactive, responsive user interfaces.</p>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/5 flex gap-8">
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1">2+</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider">Years Exp</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1">5</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider">Major Projects</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-white mb-1 flex items-center gap-2">
+                    <Flag size={24} className="text-red-500" />
+                  </div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider">F1 Enthusiast</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
